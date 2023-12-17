@@ -24,13 +24,12 @@ String current_line = "";
 
 //------------------------------------------------------------------------------
 //
-// rbx_update
+// rbx_read
 //
-// Executes the update loop for rbx_arduino and returns the next available line,
-// or an empty string if one is not available.
+// Executes the update loop for rbx_arduino and returns the next byte, if found.
 //
 //------------------------------------------------------------------------------
-String rbx_update() {
+int rbx_read() {
     bool curr_clock = XInput.getRumbleLeft() == 255;
 
     if (curr_clock != prev_clock) {
@@ -39,20 +38,9 @@ String rbx_update() {
             int byte = XInput.getRumbleRight();
             char character = byte;
 
-            if (byte == 10) {
-                full_line = current_line;
-                current_line = "";
-                //Serial1.println("Command finalised, got " + full_line);
-            } else {
-                current_line = current_line + String(character);
-                //Serial1.println("Added " + String(character) + " to the command buffer");
-            }
+            return character;
         }
     }
-
-    String return_ln = full_line;
-    full_line = "";
-    return return_ln;
 }
 
 

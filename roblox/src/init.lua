@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 --
--- rbx-arduino (./init.luau)
+-- rbx_arduino (./init.luau)
 --
 -- plainenglish
 -- December 2023
